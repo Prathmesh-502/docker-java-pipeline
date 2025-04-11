@@ -3,16 +3,12 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("java-hello-pipeline")
-                }
+                sh 'docker build -t java-hello-pipeline .'
             }
         }
         stage('Run Docker Container') {
             steps {
-                script {
-                    docker.image("java-hello-pipeline").run()
-                }
+                sh 'docker run --rm java-hello-pipeline'
             }
         }
     }
